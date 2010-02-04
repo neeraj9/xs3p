@@ -7,3 +7,7 @@ documenting the XML used in FiForms. The stylesheet has been
 modified to point to the new xs3p home here at FiForms, while
 still retaining the old (dead) link to the dstc website. The
 xs3p home is http://xml.fiforms.org/xs3p/
+
+Version 1.1.4
+Moved the README.txt documentation online
+Added xs3p_links.xsl file
