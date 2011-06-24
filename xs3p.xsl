@@ -3735,10 +3735,12 @@ div#legend div.hint {
      -->
    <xsl:template match="xsd:complexType" mode="sample">
       <xsl:param name="schemaLoc">this</xsl:param>
+      <xsl:param name="parentGroups"/>
 
       <xsl:call-template name="PrintSampleComplexElement">
          <xsl:with-param name="type" select="."/>
          <xsl:with-param name="schemaLoc" select="$schemaLoc"/>
+	 <xsl:with-param name="parentGroups" select="$parentGroups"/>
       </xsl:call-template>
    </xsl:template>
 
@@ -3765,6 +3767,7 @@ div#legend div.hint {
       <xsl:param name="isNewField">false</xsl:param>
       <xsl:param name="schemaLoc">this</xsl:param>
       <xsl:param name="typeList"/>
+      <xsl:param name="parentGroups"/>
 
       <xsl:choose>
          <!-- Prohibited element declaration -->
@@ -3798,6 +3801,7 @@ div#legend div.hint {
                         <xsl:call-template name="PrintSampleComplexElement">
                            <xsl:with-param name="element" select="."/>
                            <xsl:with-param name="type" select="$ctype"/>
+			   <xsl:with-param name="parentGroups" select="$parentGroups"/>
                         </xsl:call-template>
                      </xsl:when>
                      <!-- Complex type was not found. -->
@@ -3814,6 +3818,7 @@ div#legend div.hint {
                         <xsl:call-template name="PrintSampleComplexElement">
                            <xsl:with-param name="element" select="."/>
                            <xsl:with-param name="type" select="$ctype"/>
+			   <xsl:with-param name="parentGroups" select="$parentGroups"/>
                         </xsl:call-template>
                      </xsl:otherwise>
                   </xsl:choose>
@@ -3824,6 +3829,7 @@ div#legend div.hint {
                      <xsl:with-param name="element" select="."/>
                      <xsl:with-param name="type" select="xsd:complexType"/>
                      <xsl:with-param name="schemaLoc" select="$schemaLoc"/>
+                     <xsl:with-param name="parentGroups" select="$parentGroups"/>
                   </xsl:call-template>
                </xsl:when>
                <xsl:otherwise>
@@ -3847,6 +3853,7 @@ div#legend div.hint {
                      <xsl:with-param name="isNewField" select="$isNewField"/>
                      <xsl:with-param name="schemaLoc" select="$schemaLoc"/>
                      <xsl:with-param name="typeList" select="$typeList"/>
+                     <xsl:with-param name="parentGroups" select="$parentGroups"/>
                   </xsl:call-template>
                </xsl:when>
                <xsl:otherwise>
@@ -4606,6 +4613,7 @@ A local schema component contains two dashes in
       <xsl:param name="isNewField">false</xsl:param>
       <xsl:param name="schemaLoc">this</xsl:param>
       <xsl:param name="typeList"/>
+      <xsl:param name="parentGroups"/>
 
       <xsl:choose>
          <!-- Circular type hierarchy -->
@@ -4678,6 +4686,7 @@ A local schema component contains two dashes in
                      <xsl:with-param name="fromTopCType" select="$fromTopCType"/>
                      <xsl:with-param name="schemaLoc" select="$schemaLoc"/>
                      <xsl:with-param name="typeList" select="$typeList"/>
+                     <xsl:with-param name="parentGroups" select="$parentGroups"/>
                   </xsl:call-template>
                </xsl:variable>
 
@@ -5178,6 +5187,7 @@ A local schema component contains two dashes in
       <xsl:param name="addBR">true</xsl:param>
       <xsl:param name="schemaLoc">this</xsl:param>
       <xsl:param name="typeList"/>
+      <xsl:param name="parentGroups"/>
 
       <xsl:if test="$addBR='true'"><br/></xsl:if>
 
@@ -5240,6 +5250,7 @@ A local schema component contains two dashes in
                   </xsl:with-param>
                   <xsl:with-param name="schemaLoc" select="$schemaLoc"/>
                   <xsl:with-param name="typeList" select="concat($typeList, '*', $type/@name, '+')"/>
+                  <xsl:with-param name="parentGroups" select="$parentGroups"/>
                </xsl:call-template>
             </xsl:if>
          </xsl:when>
@@ -5295,6 +5306,7 @@ A local schema component contains two dashes in
                            <xsl:with-param name="addBR">false</xsl:with-param>
                            <xsl:with-param name="schemaLoc" select="$schemaLoc"/>
                            <xsl:with-param name="typeList" select="concat($typeList, '*', $type/@name, '+')"/>
+			   <xsl:with-param name="parentGroups" select="$parentGroups"/>
                         </xsl:call-template>
                      </xsl:when>
                      <!-- Complex type was not found. -->
@@ -5329,6 +5341,7 @@ A local schema component contains two dashes in
                            <xsl:with-param name="addBR">false</xsl:with-param>
                            <xsl:with-param name="schemaLoc" select="$defLoc"/>
                            <xsl:with-param name="typeList" select="concat($typeList, '*', $type/@name, '+')"/>
+			   <xsl:with-param name="parentGroups" select="$parentGroups"/>
                         </xsl:call-template>
                      </xsl:otherwise>
                   </xsl:choose>
@@ -5351,6 +5364,7 @@ A local schema component contains two dashes in
                         </xsl:with-param>
                         <xsl:with-param name="schemaLoc" select="$schemaLoc"/>
                         <xsl:with-param name="typeList" select="concat($typeList, '*', $type/@name, '+')"/>
+			<xsl:with-param name="parentGroups" select="$parentGroups"/>
                      </xsl:call-template>
                   </xsl:if>
                </xsl:otherwise>
@@ -5389,6 +5403,7 @@ A local schema component contains two dashes in
                <xsl:with-param name="isNewField" select="$isNewField"/>
                <xsl:with-param name="schemaLoc" select="$schemaLoc"/>
                <xsl:with-param name="typeList" select="concat($typeList, '*', $type/@name, '+')"/>
+		<xsl:with-param name="parentGroups" select="$parentGroups"/>
             </xsl:call-template>
          </xsl:when>
       </xsl:choose>
@@ -5421,6 +5436,7 @@ A local schema component contains two dashes in
       <xsl:param name="isNewField">false</xsl:param>
       <xsl:param name="schemaLoc">this</xsl:param>
       <xsl:param name="typeList"/>
+      <xsl:param name="parentGroups"/>
 
       <xsl:if test="$list">
          <xsl:apply-templates select="$list/xsd:group | $list/xsd:sequence | $list/xsd:choice | $list/xsd:all | $list/xsd:element" mode="sample">
@@ -5429,6 +5445,7 @@ A local schema component contains two dashes in
             <xsl:with-param name="isNewField" select="$isNewField"/>
             <xsl:with-param name="schemaLoc" select="$schemaLoc"/>
             <xsl:with-param name="typeList" select="$typeList"/>
+	    <xsl:with-param name="parentGroups" select="$parentGroups"/>
          </xsl:apply-templates>
       </xsl:if>
    </xsl:template>
