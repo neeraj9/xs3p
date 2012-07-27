@@ -3,6 +3,7 @@ RESULTS_DIR=xsltproc-results
 LINKS_FILE=links.xml
 XSLT_FILE=xs3p.xsl
 ORIGINAL_XSLT_FILE=../$XSLT_FILE
+STANDARD_DIR=standardized-results
 #    Copy XSLT file to local directory
 cp $ORIGINAL_XSLT_FILE .
 #    Create results directory
@@ -15,6 +16,12 @@ for f in *.xsd
 do
   echo "Generating documentation for: $f"
   xsltproc --nonet --output $RESULTS_DIR/$f.html $XSLT_FILE $f
+done
+# Display differences to standardized results 
+for f in *.xsd
+do
+  echo "Differences for: $f "
+  diff $STANDARD_DIR/$f.html $RESULTS_DIR/$f.html
 done
 #    Test external links
 # XSD_FILE=address.xsd
