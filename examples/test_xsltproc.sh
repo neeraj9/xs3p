@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 RESULTS_DIR=xsltproc-results
 LINKS_FILE=links.xml
 XSLT_FILE=xs3p.xsl
